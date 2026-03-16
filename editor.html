@@ -189,7 +189,7 @@
         const pw = document.getElementById("password-input").value;
 
         // Try a dummy request to validate password
-        fetch("https://script.google.com/macros/s/AKfycbz4VDtjnB1z6owU7plywtrtruRPeFRRs7FSgLj7GDEMtRTIeDInaDPW5s4xhM13GMWGeA/exec", {
+        fetch("https://script.google.com/macros/s/AKfycbzS2aUxQCq_fw4qpTCRIk0BzIsi3hzC-zTLRsYqtPeoUBUz06Se_tpVNLGeuJc4qbhJHA/exec", {
             method: "POST",
             body: JSON.stringify({ password: pw, test: true })
         })
@@ -240,7 +240,7 @@
             article.body.push(block.innerHTML);
         });
 
-        fetch("https://script.google.com/macros/s/AKfycbze99CfiukeoY0B-T09s6sfUoBehAvSrQgXlc8qU_6-PN_0h2PflvSdCKLEl0u-AuqWcQ/exec", {
+        fetch("https://script.google.com/macros/s/AKfycbzS2aUxQCq_fw4qpTCRIk0BzIsi3hzC-zTLRsYqtPeoUBUz06Se_tpVNLGeuJc4qbhJHA/exec", {
             method: "POST",
             body: JSON.stringify(article)
         })
