@@ -1,37 +1,124 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Funny Paper — Editor</title>
+<title>Funny Paper — Article Editor</title>
 
 <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; }
-    .editor-header { background: black; color: white; padding: 20px; text-align: center; }
-    .editor-container { max-width: 900px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; }
-    .field { margin-bottom: 20px; }
-    .field-row { display: flex; gap: 20px; }
-    label { display: block; font-weight: bold; margin-bottom: 5px; }
-    input, select { width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: 4px; }
-
-    .toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; align-items: center; }
-    .toolbar button, .toolbar select, .toolbar input[type="color"] {
-        padding: 8px 12px; border: 1px solid #ccc; background: #eee;
-        cursor: pointer; border-radius: 4px; font-size: 0.9rem;
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        margin: 0;
     }
-    .toolbar button:hover { background: #ddd; }
 
-    .body-editor { border: 2px dashed #aaa; padding: 20px; min-height: 150px; background: #fafafa; }
-    .paragraph-block { background: white; border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 4px; }
-    .paragraph-block[contenteditable="true"] { outline: none; min-height: 40px; }
+    .editor-header {
+        background: black;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .editor-container {
+        max-width: 900px;
+        margin: 30px auto;
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+    }
+
+    .field {
+        margin-bottom: 20px;
+    }
+
+    .field-row {
+        display: flex;
+        gap: 20px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    /* Toolbar */
+    .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 10px;
+        align-items: center;
+    }
+
+    .toolbar button, .toolbar select, .toolbar input[type="color"] {
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        background: #eee;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 0.9rem;
+    }
+
+    .toolbar button:hover {
+        background: #ddd;
+    }
+
+    .body-editor {
+        border: 2px dashed #aaa;
+        padding: 20px;
+        min-height: 150px;
+        background: #fafafa;
+    }
+
+    .paragraph-block {
+        background: white;
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 4px;
+    }
+
+    .paragraph-block[contenteditable="true"] {
+        outline: none;
+        min-height: 40px;
+    }
 
     .add-btn, .publish-btn {
-        margin-top: 20px; padding: 12px 20px; font-size: 1rem;
-        cursor: pointer; border: none; border-radius: 4px;
+        margin-top: 20px;
+        padding: 12px 20px;
+        font-size: 1rem;
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
     }
-    .add-btn { background: #0077cc; color: white; }
-    .publish-btn { background: #28a745; color: white; float: right; }
 
-    .output { margin-top: 40px; background: #222; color: #0f0; padding: 20px; border-radius: 4px; white-space: pre-wrap; }
+    .add-btn {
+        background: #0077cc;
+        color: white;
+    }
+
+    .publish-btn {
+        background: #28a745;
+        color: white;
+        float: right;
+    }
+
+    .output {
+        margin-top: 40px;
+        background: #222;
+        color: #0f0;
+        padding: 20px;
+        border-radius: 4px;
+        white-space: pre-wrap;
+    }
 </style>
 
 </head>
@@ -39,25 +126,25 @@
 
 <header class="editor-header">
     <h1>Funny Paper — Article Editor</h1>
-    <p>Where journalism goes to take a nap.</p>
+    <p class="tagline">Where journalism goes to take a nap.</p>
 </header>
 
 <main class="editor-container">
 
     <div class="field">
         <label>Headline</label>
-        <input id="headline" type="text">
+        <input id="headline" type="text" placeholder="e.g., Mayor Declares Tuesday Illegal">
     </div>
 
     <div class="field">
         <label>Subheadline</label>
-        <input id="subheadline" type="text">
+        <input id="subheadline" type="text" placeholder="Experts warn: Wednesday may be next">
     </div>
 
     <div class="field-row">
         <div class="field">
             <label>Author</label>
-            <input id="author" type="text">
+            <input id="author" type="text" placeholder="By Someone Who Definitely Did Research">
         </div>
 
         <div class="field">
@@ -73,17 +160,19 @@
 
     <div class="field">
         <label>Hero Image URL</label>
-        <input id="heroImage" type="text">
+        <input id="heroImage" type="text" placeholder="https://example.com/image.jpg">
     </div>
 
     <h2>Article Body</h2>
 
+    <!-- Formatting Toolbar -->
     <div class="toolbar">
         <button onclick="format('bold')"><b>B</b></button>
         <button onclick="format('italic')"><i>I</i></button>
         <button onclick="format('underline')"><u>U</u></button>
         <button onclick="addLink()">Link</button>
 
+        <!-- Font Size -->
         <select onchange="setFontSize(this.value)">
             <option value="">Size</option>
             <option value="1">Small</option>
@@ -92,8 +181,10 @@
             <option value="7">Huge</option>
         </select>
 
+        <!-- Font Color -->
         <input type="color" onchange="setColor(this.value)">
 
+        <!-- Font Family -->
         <select onchange="setFontFamily(this.value)">
             <option value="">Font</option>
             <option value="Arial">Arial</option>
@@ -107,7 +198,8 @@
     <div id="body-editor" class="body-editor"></div>
 
     <button id="add-paragraph" class="add-btn">+ Add Paragraph</button>
-    <button id="publish" class="publish-btn">Publish</button>
+
+    <button id="publish" class="publish-btn">Publish Article</button>
 
     <pre id="output" class="output"></pre>
 
@@ -117,6 +209,7 @@
     const bodyEditor = document.getElementById("body-editor");
     const output = document.getElementById("output");
 
+    // Add paragraph block
     document.getElementById("add-paragraph").onclick = () => {
         const block = document.createElement("div");
         block.className = "paragraph-block";
@@ -125,15 +218,29 @@
         bodyEditor.appendChild(block);
     };
 
-    function format(cmd) { document.execCommand(cmd, false, null); }
+    // Formatting functions
+    function format(cmd) {
+        document.execCommand(cmd, false, null);
+    }
+
     function addLink() {
         const url = prompt("Enter URL:");
         if (url) document.execCommand("createLink", false, url);
     }
-    function setFontSize(size) { if (size) document.execCommand("fontSize", false, size); }
-    function setColor(color) { document.execCommand("foreColor", false, color); }
-    function setFontFamily(font) { if (font) document.execCommand("fontName", false, font); }
 
+    function setFontSize(size) {
+        if (size) document.execCommand("fontSize", false, size);
+    }
+
+    function setColor(color) {
+        document.execCommand("foreColor", false, color);
+    }
+
+    function setFontFamily(font) {
+        if (font) document.execCommand("fontName", false, font);
+    }
+
+    // Publish article to Google Apps Script
     document.getElementById("publish").onclick = () => {
         const article = {
             headline: document.getElementById("headline").value,
@@ -149,14 +256,17 @@
             article.body.push(block.innerHTML);
         });
 
-        google.script.run
-            .withSuccessHandler(id => {
-                output.textContent = "Published! Article ID: " + id;
-            })
-            .withFailureHandler(err => {
-                output.textContent = "Error: " + err;
-            })
-            .saveArticle(article);
+        fetch("https://script.google.com/macros/s/AKfycbze99CfiukeoY0B-T09s6sfUoBehAvSrQgXlc8qU_6-PN_0h2PflvSdCKLEl0u-AuqWcQ/exec", {
+            method: "POST",
+            body: JSON.stringify(article)
+        })
+        .then(res => res.json())
+        .then(data => {
+            output.textContent = "Published! Article ID: " + data.id;
+        })
+        .catch(err => {
+            output.textContent = "Error: " + err;
+        });
     };
 </script>
 
