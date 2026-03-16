@@ -189,7 +189,7 @@
         const pw = document.getElementById("password-input").value;
 
         // Try a dummy request to validate password
-        fetch("YOUR_WEB_APP_URL_HERE", {
+        fetch("https://script.google.com/macros/s/AKfycbz4VDtjnB1z6owU7plywtrtruRPeFRRs7FSgLj7GDEMtRTIeDInaDPW5s4xhM13GMWGeA/exec", {
             method: "POST",
             body: JSON.stringify({ password: pw, test: true })
         })
